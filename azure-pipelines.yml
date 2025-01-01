@@ -4,33 +4,32 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+  - main
 
 pool:
-  name: default 
+  name: default
 
 steps:
-# Azure Container Apps task to deploy the container
-- task: AzureContainerApps@1
-  inputs:
-    azureSubscription: 'Azure subscription 1(90e9d3cb-d9a5-48b7-9ab3-a9ed3913bf73)'  # Ensure this is your correct service connection name
-    acrName: 'taoacr1224'  # Your Azure Container Registry name
-    imageToBuild: 'taoacr1224.azurecr.io/my-app:latest'  # Image to build
-    imageToDeploy: 'taoacr1224.azurecr.io/my-app:latest'  # Image to deploy
-    containerAppName: 'tao-app-1'  # The name of the Container App
-    resourceGroup: 'RG1'  # Resource Group where your ACR and Container App are located
-    location: 'Australia East'  # Ensure the region matches the location of your resources
-    targetPort: '80'  # Port that the app will run on (ensure this matches your app's config)
-    disableTelemetry: true  # Disable telemetry if required
+  - task: AzureContainerApps@1
+    inputs:
+      azureSubscription: 'YOUR-SERVICE-CONNECTION-NAME'  # Use correct service connection
+      acrName: 'taoacr1224'  # ACR Name
+      imageToDeploy: 'taoacr1224.azurecr.io/aspnetcorecontainer:latest'  # Ensure image is correct
+      containerAppName: 'tao-app-1'  # Your Container App name
+      resourceGroup: 'RG1'  # Ensure the Resource Group is correct
+      location: 'Australia East'  # Ensure region is correct
+      targetPort: '80'  # Match your app's configuration
+      disableTelemetry: true  # Optional, disable telemetry if needed
 
-# Additional custom steps (Example: simple scripts)
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  # Additional custom steps if needed
+  - script: echo Hello, world!
+    displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  - script: |
+      echo Add other tasks to build, test, and deploy your project.
+      echo See https://aka.ms/yaml
+    displayName: 'Run a multi-line script'
+
 
 
 
