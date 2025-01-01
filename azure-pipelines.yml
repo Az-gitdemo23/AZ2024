@@ -10,6 +10,16 @@ pool:
   name: default 
 
 steps:
+- task: AzureContainerApps@1
+  inputs:
+    acrName: 'taoacr1224'
+    imageToBuild: 'taoacr1224.azurecr.io/my-app:latest'
+    imageToDeploy: 'taoacr1224.azurecr.io/my-app:latest'
+    containerAppName: 'tao-app-1'
+    resourceGroup: 'RG1'
+    targetPort: '80'
+    location: 'Australia East'
+    disableTelemetry: true
 # Login to ACR manually using the token
 - script: |
     echo Authenticating to ACR...
