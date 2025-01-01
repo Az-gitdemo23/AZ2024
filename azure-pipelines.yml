@@ -7,9 +7,20 @@ trigger:
 - main
 
 pool:
-  vmImage: default
+  name: default
 
 steps:
+# Azure Container Apps task to deploy the container
+- task: AzureContainerApps@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(90e9d3cb-d9a5-48b7-9ab3-a9ed3913bf73)'
+    acrName: 'taoacr1224'
+    imageToBuild: 'taoacr1224.azurecr.io/aspnetcorecontainer:latest'
+    imageToDeploy: 'taoacr1224.azurecr.io/aspnetcorecontainer:latest'
+    containerAppName: 'tao-app-1'
+    resourceGroup: 'RG1'
+
+# Additional custom steps (Example: simple scripts)
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
@@ -17,3 +28,4 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
