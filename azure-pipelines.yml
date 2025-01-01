@@ -12,7 +12,7 @@ pool:
 steps:
   - task: AzureContainerApps@1
     inputs:
-      azureSubscription: 'YOUR-SERVICE-CONNECTION-NAME'  # Use correct service connection
+      azureSubscription: 'Azure subscription 1(90e9d3cb-d9a5-48b7-9ab3-a9ed3913bf73)'  # Use correct service connection
       acrName: 'taoacr1224'  # ACR Name
       imageToDeploy: 'taoacr1224.azurecr.io/aspnetcorecontainer:latest'  # Ensure image is correct
       containerAppName: 'tao-app-1'  # Your Container App name
