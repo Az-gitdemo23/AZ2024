@@ -10,6 +10,12 @@ pool:
   name: default 
 
 steps:
+# Login to ACR manually using the token
+- script: |
+    echo Authenticating to ACR...
+    docker login taoacr1224.azurecr.io -u 00000000-0000-0000-0000-000000000000 -p "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlBWRTc6SVM2RzpRUEVJOkpFRTc6TkgzVDpTNEhaOk5IRko6U1BTSzpWQks0OjRCSEI6V01DTjpSSUdXIn0.eyJqdGkiOiI5OTQzMjFiMC1hN2I2LTQwNjYtYjgyYi1hZGFmYmY0NDA2NWMiLCJzdWIiOiJsaXZlLmNvbSNsZXJlbGFkMjAwMkB5YWhvby5jYSIsIm5iZiI6MTczNTc1NDQxMywiZXhwIjoxNzM1NzY2MTEzLCJpYXQiOjE3MzU3NTQ0MTMsImlzcyI6IkF6dXJlIENvbnRhaW5lciBSZWdpc3RyeSIsImF1ZCI6InRhb2FjcjEyMjQuYXp1cmVjci5pbyIsInZlcnNpb24iOiIxLjAiLCJyaWQiOiJjOGVmMzlkNDEyYmM0OWVjOWI3ZGE5NzEzNGNlMzhiZCIsImdyYW50X3R5cGUiOiJyZWZyZXNoX3Rva2VuIiwiYXBwaWQiOiJiNjc3YzI5MC1jZjRiLTRhOGUtYTYwZS05MWJhNjUwYTRhYmUiLCJ0ZW5hbnQiOiI5MjM1NzBhMi03NWJiLTRkNmYtOTBjYS1kYmEyNWM4MzRlZmUiLCJwZXJtaXNzaW9ucyI6eyJhY3Rpb25zIjpbInJlYWQiLCJ3cml0ZSIsImRlbGV0ZSIsIm1ldGFkYXRhL3JlYWQiLCJtZXRhZGF0YS93cml0ZSIsImRlbGV0ZWQvcmVhZCIsImRlbGV0ZWQvcmVzdG9yZS9hY3Rpb24iXX0sInJvbGVzIjpbXX0.k8aUl7G6Aw9SbOZKmXnh0_A3KU4zsRF3JsqxBOBLkK0M8ekFf8Z7KpMUAAziDZjP1hJr5kth_75iih4_z7or6bnj9jmO_sQkHmkqzbveSWM7x7bXUQuc8zqcfVvGFTQ-2XmstMCcxRlILEJKu9laDdjIaOpbQHxgHZWmFAeyBqrhXEI9kUJFmvXPXuNAYHmsouX902C9vGX3tstsu7SLsXV_ga39g6eYSOpvC6G4cRzIw_JBwijE4eF16Z2qBrVErPV8GvkslvAIm6H6aqO_XYkhMMEZupt-DHeSdzL2ZSfkpVqwonrWTEGxXIA4o6k1kaaSkeO_SURElULZQPmlPw"
+  displayName: 'ACR Login'
+
 # Azure Container Apps task to deploy the container
 - task: AzureContainerApps@1
   inputs:
@@ -20,13 +26,13 @@ steps:
     containerAppName: 'tao-app-1'
     resourceGroup: 'RG1'
 
-# Additional custom steps (Example: simple scripts)
+# Additional custom steps
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script' 
+  displayName: 'Run a multi-line script'
 
 
