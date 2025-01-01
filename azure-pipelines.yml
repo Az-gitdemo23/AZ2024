@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  name: WindowsAgentPool 
+  name: default 
 
 steps:
 # Azure Container Apps task to deploy the container
