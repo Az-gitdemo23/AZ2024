@@ -8,6 +8,17 @@ trigger:
 
 pool:
   name: default 
+- task: AzureContainerApps@1
+  inputs:
+    imageToDeploy: 'taoacr1224.azurecr.io/aspnetcorecontainer:latest'
+    containerAppName: 'tao-app-1'
+- task: AzureContainerApps@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(90e9d3cb-d9a5-48b7-9ab3-a9ed3913bf73)'
+    acrName: 'taoacr1224'
+    acrPassword: 'Dn5hXDSBADAYPCMvX68O9bZqJzoe6NEeh7vS9uBadCSSFoHnvk5QJQQJ99BAACAAAAAAAAAAAAASAZDO4rgV'
+    location: 'Australia east'
+    resourceGroup: 'RG1'
 
 steps:
 # Azure Container Apps task to deploy the container
