@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  name: Self-Hosted Agent Token
+  name: default
 
 steps:
 # Azure Container Apps task to deploy the container
